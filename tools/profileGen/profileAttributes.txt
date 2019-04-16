@@ -1,0 +1,29 @@
+Generate fixed number of both employee and employer
+
+- string? := optional field
+
+******************************* STRINGS **********************************
+- username (must be unique)
+    - maxLen 255 char
+- name (first, last)
+- origin
+    - neighborhood (Pittsburgh)
+    - or states (if out of pgh)
+
+******************************** SCALE *********************************
+must be in (key, value) pairs
+- key := {likert.name, semDiff.name}
+- 1 to 5 (inclusive)
+
+******************************** CSV *********************************
+headers:
+    - id
+    - firstName
+    - lastName
+    - origin
+    - likert.{name} (where {name} is listed in constants file)
+    - semDiff.{name} (same deal as likert)
+
+- employerID
+- employeeID
+- score

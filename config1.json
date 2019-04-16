@@ -1,0 +1,6 @@
+{
+    "dataPath": "/Users/vanshikachowdhary/Desktop/nob-server/data",
+    "cookieSecret": "asbihwleBF",
+    "port": 4500,
+    "hostname": "0.0.0.0"
+}
