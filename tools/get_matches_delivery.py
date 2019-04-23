@@ -74,9 +74,9 @@ def setup():
 
 def get_matches(request, providers, histories):
     #print("getting matches")
-    model = pickle.load(open('/Users/vanshikachowdhary/Desktop/night-owl-bakery-master/data/model_delivery.pickle', 'rb'))
+    model = pickle.load(open('/Users/vanshikachowdhary/Desktop/nob-server/data/model_delivery.pickle', 'rb'))
     providers = [i for i in providers if i]
-    #print(providers)
+   # print(providers)
     providerdf = pd.io.json.json_normalize(providers, sep='_')
 
 
@@ -142,9 +142,15 @@ def get_matches(request, providers, histories):
     result.sort_values(by=['score'], ascending=False, inplace=True);
     result = result.head(5)
 
-    return result.to_json()
+    res = {}
+    count = 0
+    for key in result["id"]:
+        res[count] = key
+        count += 1
+
+    return json.dumps(res)
     
-    #print(result.to_json())
+    
     
     #print(request)
    # print(histories)

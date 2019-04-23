@@ -18,8 +18,8 @@ from sklearn import metrics
 def setup():
     db = Database()
     db.createMatchTable()
-    employeePath = '../data/employees.csv'
-    employerPath = '../data/employers.csv'
+    employeePath = '/Users/vanshikachowdhary/Desktop/nob-server/data/employees.csv'
+    employerPath = '/Users/vanshikachowdhary/Desktop/nob-server/data/employers.csv'
 
     model = pickle.load(open('/data/model.pickle', 'rb'))
     employeeData = pd.read_csv(employeePath, sep=',')
@@ -75,9 +75,9 @@ def setup():
 
 def get_matches(request, providers, histories):
     #print("getting matches")
-    model = pickle.load(open('/Users/vanshikachowdhary/Desktop/night-owl-bakery-master/data/model_tutoring.pickle', 'rb'))
+    model = pickle.load(open('/Users/vanshikachowdhary/Desktop/nob-server/data/model_tutoring.pickle', 'rb'))
     providers = [i for i in providers if i]
-    #print(providers)
+   # print(providers)
     providerdf = pd.io.json.json_normalize(providers, sep='_')
 
 
@@ -144,12 +144,19 @@ def get_matches(request, providers, histories):
         'id': df['id'],
         'score': model.predict(inputSamples)
     })
+
+    res = {}
+    count = 0
     
-   
     result.sort_values(by=['score'], ascending=False, inplace=True);
     result = result.head(5)
+    
+    
+    for key in result["id"]:
+        res[count] = key
+        count += 1
 
-    return result.to_json()
+    return json.dumps(res)
     
     #print(result.to_json())
     
