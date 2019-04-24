@@ -148,8 +148,7 @@ def get_matches(request, providers, histories):
     res = {}
     count = 0
     
-    result.sort_values(by=['score'], ascending=False, inplace=True);
-    result = result.head(5)
+    result.sort_values(by=['score'], ascending=False, inplace=True)
     
     
     for key in result["id"]:
