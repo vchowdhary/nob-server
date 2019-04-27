@@ -21,6 +21,10 @@ module.exports = (sequelize, Sequelize) => {
             matchID: {
                 type: Sequelize.INTEGER,
                 allowNull: true
+            },
+            maxAttempt: {
+                type: Sequelize.INTEGER,
+                allowNull: true
             }
         }
     );
