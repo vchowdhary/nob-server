@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
         'MatchNotification',
         {
             matches: {
-                type: Sequelize.ARRAY,
+                type: Sequelize.STRING,
                 allowNull: true
             },
             message:
@@ -15,7 +15,7 @@ module.exports = (sequelize, Sequelize) => {
             },
             statuses: 
             {
-                type: Sequelize.ARRAY,
+                type: Sequelize.STRING,
                 allowNull: true
             },
             matchID: {
