@@ -4,7 +4,6 @@ module.exports = (sequelize, Sequelize) => {
     var Match = sequelize.define(
         'Match',
         {
-            
             requester_id:
             {
                 type: Sequelize.STRING,
