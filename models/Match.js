@@ -70,7 +70,8 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.JSON,
                 allowNull: true
             }
-        }
+        },
+        { timestamps: false }
     );
 
     

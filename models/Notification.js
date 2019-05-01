@@ -19,9 +19,34 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.STRING,
                 allowNull: true
             },
+            title:
+            {
+                type: Sequelize.STRING,
+                allowNull: true
+            },
             status: 
             {
                 type: Sequelize.STRING,
+                allowNull: true
+            },
+            prev:
+            {
+                type: Sequelize.INTEGER,
+                allowNull: true
+            },
+            next:
+            {
+                type: Sequelize.INTEGER,
+                allowNull: true
+            },
+            attempts:
+            {
+                type: Sequelize.INTEGER,
+                allowNull: true
+            },
+            matchID:
+            {
+                type: Sequelize.INTEGER,
                 allowNull: true
             }
         }
