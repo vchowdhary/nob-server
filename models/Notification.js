@@ -48,7 +48,12 @@ module.exports = (sequelize, Sequelize) => {
             {
                 type: Sequelize.INTEGER,
                 allowNull: true
-            }
+            },
+            listID:
+            {
+                type: Sequelize.INTEGER,
+                allowNull: true
+            },
         }
     );
     return Notification;
