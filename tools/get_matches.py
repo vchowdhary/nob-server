@@ -18,8 +18,8 @@ from sklearn import metrics
 def setup():
     db = Database()
     db.createMatchTable()
-    employeePath = '/Users/vanshikachowdhary/Desktop/nob-server/data/employees.csv'
-    employerPath = '/Users/vanshikachowdhary/Desktop/nob-server/data/employers.csv'
+    employeePath = '/home/vanshika/nob-server/data/employees.csv'
+    employerPath = '/home/vanshika/nob-server/data/employers.csv'
 
     model = pickle.load(open('/data/model.pickle', 'rb'))
     employeeData = pd.read_csv(employeePath, sep=',')
@@ -75,7 +75,7 @@ def setup():
 
 def get_matches(request, providers, histories):
     #print("getting matches")
-    model = pickle.load(open('/Users/vanshikachowdhary/Desktop/nob-server/data/model_tutoring.pickle', 'rb'))
+    model = pickle.load(open('/home/vanshika/nob-server/data/model_tutoring.pickle', 'rb'))
     providers = [i for i in providers if i]
    # print(providers)
     providerdf = pd.io.json.json_normalize(providers, sep='_')
@@ -170,9 +170,9 @@ def read_in():
     return json.loads(lines[0])
 
 if __name__ == "__main__":
-    #print("getting matches")
-    lines = read_in()
-    result = get_matches(lines[0], lines[1], lines[2])
-    print(result)
+    print("getting matches")
+    #lines = read_in()
+    #result = get_matches(lines[0], lines[1], lines[2])
+    print("{}")
     sys.stdout.flush()
     

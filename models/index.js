@@ -12,6 +12,7 @@ const {
     dataPath
 } = config;
 
+console.log("Attempting to connect to database");
 // Connect to database.
 const sequelize = new Sequelize({
     operatorsAliases: false,

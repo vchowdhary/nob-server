@@ -73,8 +73,8 @@ def setup():
             db.insertMatchTable(id, row[0], row[1], row[2])
 
 def get_matches(request, providers, histories):
-    #print("getting matches")
-    model = pickle.load(open('/Users/vanshikachowdhary/Desktop/nob-server/data/model_delivery.pickle', 'rb'))
+    print("getting matches")
+    model = pickle.load(open('/usr0/home/vanshika/nob-server/data/model_delivery.pickle', 'rb'))
     providers = [i for i in providers if i]
    # print(providers)
     providerdf = pd.io.json.json_normalize(providers, sep='_')
@@ -162,9 +162,9 @@ def read_in():
     return json.loads(lines[0])
 
 if __name__ == "__main__":
-    #print("getting matches")
+    print("getting matches")
     lines = read_in()
-    result = get_matches(lines[0], lines[1], lines[2])
-    print(result)
+    #result = get_matches(lines[0], lines[1], lines[2])
+    print("result")
     sys.stdout.flush()
     
