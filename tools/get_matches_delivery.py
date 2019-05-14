@@ -11,9 +11,9 @@ import pandas as pd
 from sklearn.svm import SVR
 from sklearn import metrics
 
-def get_matches(request, providers, histories):
+def get_matches(request, providers, histories, d):
     #print(request)
-    model = pickle.load(open('/home/vanshika/nob-server/data/model_delivery.pickle', 'rb'), encoding='latin1') 
+    model = pickle.load(open(d + '/data/model_delivery.pickle', 'rb'), encoding='latin1') 
     #print(providers)
     providers = [i for i in providers if i]
     providerdf = pd.io.json.json_normalize(providers, sep='_')
@@ -96,6 +96,11 @@ def read_in():
 if __name__ == "__main__":
     #print("getting matches")
     lines = read_in()
-    result = get_matches(lines[0], lines[1], lines[2])
+    #print(lines)
+    d = open('config.json')
+    #print(d)
+    d = json.load(d)
+    #print(d)
+    result = get_matches(lines[0], lines[1], lines[2], d["data"])
     print(result)
     
