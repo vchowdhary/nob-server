@@ -1,0 +1,50 @@
+Attempting to connect to database
+awaiting server
+configuring app
+setting up apis
+setting up users
+setting up matches
+setting up location
+setting up subjects
+setting up tokens
+setting up notifications
+setting up match notifications
+setting up statuses
+Configuring static paths
+Syncing models
+Executing (default): CREATE TABLE IF NOT EXISTS `DeliveryCategories` (`category` VARCHAR(255) NOT NULL PRIMARY KEY);
+Executing (default): PRAGMA INDEX_LIST(`DeliveryCategories`)
+Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_DeliveryCategories_1`)
+Executing (default): CREATE TABLE IF NOT EXISTS `FirebaseTokens` (`id` VARCHAR(255) NOT NULL PRIMARY KEY, `token` VARCHAR(255));
+Executing (default): PRAGMA INDEX_LIST(`FirebaseTokens`)
+Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_FirebaseTokens_1`)
+Executing (default): CREATE TABLE IF NOT EXISTS `Users` (`id` VARCHAR(255) PRIMARY KEY, `pwHash` CHAR(60) NOT NULL);
+Executing (default): PRAGMA INDEX_LIST(`Users`)
+Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_Users_1`)
+Executing (default): CREATE TABLE IF NOT EXISTS `Geolocations` (`id` INTEGER PRIMARY KEY AUTOINCREMENT REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `latitude` VARCHAR(255), `longitude` VARCHAR(255), `userID` VARCHAR(255) REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL);
+Executing (default): PRAGMA INDEX_LIST(`Geolocations`)
+Executing (default): CREATE TABLE IF NOT EXISTS `Matches` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `requester_id` VARCHAR(255), `provider_id` VARCHAR(255), `service_type` VARCHAR(255) NOT NULL, `subject_1` VARCHAR(255), `subject_2` VARCHAR(255), `subject_3` VARCHAR(255), `details` VARCHAR(255), `time` FLOAT, `location` JSON, `timetodeliver` FLOAT, `provider_score` FLOAT, `requester_score` FLOAT, `dropOffLocation` JSON);
+Executing (default): PRAGMA INDEX_LIST(`Matches`)
+Executing (default): CREATE TABLE IF NOT EXISTS `MatchNotifications` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `matches` VARCHAR(255), `message` VARCHAR(255), `statuses` VARCHAR(255), `matchID` INTEGER, `maxAttempt` INTEGER);
+Executing (default): PRAGMA INDEX_LIST(`MatchNotifications`)
+Executing (default): CREATE TABLE IF NOT EXISTS `Notifications` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `to` VARCHAR(255) NOT NULL, `from` VARCHAR(255), `message` VARCHAR(255), `title` VARCHAR(255), `status` VARCHAR(255), `prev` INTEGER, `next` INTEGER, `attempts` INTEGER, `matchID` INTEGER, `listID` INTEGER);
+Executing (default): PRAGMA INDEX_LIST(`Notifications`)
+Executing (default): CREATE TABLE IF NOT EXISTS `NotificationLists` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `first` INTEGER NOT NULL, `last` INTEGER, `attempts` INTEGER);
+Executing (default): PRAGMA INDEX_LIST(`NotificationLists`)
+Executing (default): CREATE TABLE IF NOT EXISTS `Profiles` (`id` VARCHAR(255) PRIMARY KEY REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `nameFirst` VARCHAR(255) NOT NULL, `nameLast` VARCHAR(255) NOT NULL, `phone` VARCHAR(255), `bio` VARCHAR(2047), `tutoring` JSON, `delivery` JSON, `tutoringNeeds` JSON, `deliveryNeeds` JSON);
+Executing (default): PRAGMA INDEX_LIST(`Profiles`)
+Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_Profiles_1`)
+Executing (default): CREATE TABLE IF NOT EXISTS `Statuses` (`id` VARCHAR(255) NOT NULL PRIMARY KEY, `status` VARCHAR(255));
+Executing (default): PRAGMA INDEX_LIST(`Statuses`)
+Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_Statuses_1`)
+Executing (default): CREATE TABLE IF NOT EXISTS `TutoringSubjects` (`subject` VARCHAR(255) NOT NULL PRIMARY KEY);
+Executing (default): PRAGMA INDEX_LIST(`TutoringSubjects`)
+Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_TutoringSubjects_1`)
+Executing (default): CREATE TABLE IF NOT EXISTS `MatchHistory` (`provider_id` VARCHAR(255) NOT NULL REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, `userId` INTEGER NOT NULL REFERENCES `Matches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, PRIMARY KEY (`provider_id`, `userId`));
+Executing (default): PRAGMA INDEX_LIST(`MatchHistory`)
+Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_MatchHistory_1`)
+Executing (default): CREATE TABLE IF NOT EXISTS `Sessions` (`sid` VARCHAR(36) PRIMARY KEY, `expires` DATETIME, `data` TEXT);
+Executing (default): PRAGMA INDEX_LIST(`Sessions`)
+Executing (default): PRAGMA INDEX_INFO(`sqlite_autoindex_Sessions_1`)
+Setting up server
+waited for server

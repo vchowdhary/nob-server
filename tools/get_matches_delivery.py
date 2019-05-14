@@ -14,6 +14,7 @@ from sklearn import metrics
 def get_matches(request, providers, histories):
     #print(request)
     model = pickle.load(open('/home/vanshika/nob-server/data/model_delivery.pickle', 'rb'), encoding='latin1') 
+    #print(providers)
     providers = [i for i in providers if i]
     providerdf = pd.io.json.json_normalize(providers, sep='_')
 
@@ -25,7 +26,7 @@ def get_matches(request, providers, histories):
         historiesdf = pd.io.json.json_normalize(histories, sep='_')
         df["avg_match_score"] = historiesdf["score"].mean()
     
-
+    #print(historiesdf)
     if (not 'subject_1_preference' in df):
         df['preference'] = 1
 
@@ -37,7 +38,7 @@ def get_matches(request, providers, histories):
 
     if (not "avg_match_score" in df):
         df["avg_match_score"] = 0
-    
+
     #print(df)
     
     attrs = set(df.columns.values)
@@ -49,7 +50,8 @@ def get_matches(request, providers, histories):
         'subject_1_details',
         'subject_1_timetopickup',
         'subject_1_timetodeliver',
-        'id'
+        'id',
+        'subject_1_rating'
     ])
 
     inputAttrs = list(attrs - ignoredAttrs)
